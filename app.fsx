@@ -104,8 +104,8 @@ let speciesSorted =
 
 let config = 
     let port = System.Environment.GetEnvironmentVariable("PORT")
-    let ip127  = IPAddress.Parse("127.0.0.1")
-    let ipZero = IPAddress.Parse("0.0.0.0")
+    let ip127  = System.Net.IPAddress.Parse("127.0.0.1")
+    let ipZero = System.Net.IPAddress.Parse("0.0.0.0")
 
     { defaultConfig with 
         logger = Suave.Logging.Loggers.saneDefaultsFor Suave.Logging.LogLevel.Verbose
