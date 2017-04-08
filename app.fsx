@@ -103,14 +103,14 @@ let speciesSorted =
 
 
 let config = 
-    let port = int (System.Environment.GetEnvironmentVariable("PORT"))
+    let port = System.Environment.GetEnvironmentVariable("PORT")
     let ip127  = "127.0.0.1"
     let ipZero = "0.0.0.0"
 
     { defaultConfig with 
         //logger = Suave.Logging.Loggers.saneDefaultsFor Suave.Logging.LogLevel.Verbose
-        bindings=[ (if port = null then Suave.Http.HttpBinding.createSimple HTTP ip127 8080
-                    else Suave.Http.HttpBinding.createSimple HTTP ipZero port ) ] }
+        bindings=[ (if (String.IsNullOrEmpty(port)) then Suave.Http.HttpBinding.createSimple HTTP ip127 8080
+                    else Suave.Http.HttpBinding.createSimple HTTP ipZero (int port) ) ] }
 
 let text = 
     [ yield "<html><body><ul>"
