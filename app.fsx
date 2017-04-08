@@ -193,6 +193,15 @@ let jsonText n =
   }
 }}""" 
 
+let testJson n =
+    """
+{ "testing": {
+    "id": """ + n.ToString () + """,
+    "result": [""" +
+    sprintf "%d " n
+    """]
+}}"""
+
 let xmlText n = 
     """
 <menu id="file" value="File">
@@ -214,6 +223,7 @@ let app =
                   pathScan "/things/%d" (fun n -> OK (thingsText n))
                   path "/api/json" >=> jsonMime >=> OK (jsonText 100)
                   pathScan "/api/json/%d" (fun n -> jsonMime >=> OK (jsonText n))
+                  //pathScan "/api/json/testing/%d" (fun n -> jsonMime >=> OK (testJson n))
                   path "/api/xml" >=> xmlMime >=> OK (xmlText 100)
                   pathScan "/api/xml/%d" (fun n -> xmlMime >=> OK (xmlText n))
                   path "/goodbye" >=> OK "Good bye GET" ]
