@@ -103,7 +103,7 @@ let speciesSorted =
 
 
 let config = 
-    let port = int System.Environment.GetEnvironmentVariable("PORT")
+    let port = int (System.Environment.GetEnvironmentVariable("PORT"))
     let ip127  = "127.0.0.1"
     let ipZero = "0.0.0.0"
 
