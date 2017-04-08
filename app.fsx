@@ -108,9 +108,9 @@ let config =
     let ipZero = IPAddress.Parse("0.0.0.0")
 
     { defaultConfig with 
-        logger = Logging.Loggers.saneDefaultsFor Logging.LogLevel.Verbose
-        bindings=[ (if port = null then HttpBinding.mk HTTP ip127 (uint16 8080)
-                    else HttpBinding.mk HTTP ipZero (uint16 port)) ] }
+        logger = Suave.Logging.Loggers.saneDefaultsFor Logging.LogLevel.Verbose
+        bindings=[ (if port = null then Suave.HttpBinding.mk HTTP ip127 (uint16 8080)
+                    else Suave.HttpBinding.mk HTTP ipZero (uint16 port)) ] }
 
 let text = 
     [ yield "<html><body><ul>"
